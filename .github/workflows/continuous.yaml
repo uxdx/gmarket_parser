@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - release
+      - test
 name: continuous
 jobs:
   test:
@@ -40,9 +40,9 @@ jobs:
       - name: "deploy function"
         uses: "google-github-actions/deploy-cloud-functions@v1"
         with:
-          name: "hello"
+          name: "gmarket_parser"
           runtime: "nodejs18"
-          entry_point: "hello"
+          entry_point: "gmarket_parser"
           memory_mb: 128
           timeout: 20
           min_instances: 0
