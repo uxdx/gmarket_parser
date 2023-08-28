@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - release
+name: continuous
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    strategy:
+      matrix:
+        node: [18]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      function_name: hello # TODO: change this to your function name
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - name: "auth service account 2"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.cloud_functions_manager_service_account }}"
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - run: npm install
+      - name: "deploy function"
+        uses: "google-github-actions/deploy-cloud-functions@v1"
+        with:
+          name: "hello"
+          runtime: "nodejs18"
+          entry_point: "hello"
+          memory_mb: 128
+          timeout: 20
+          min_instances: 0
+          max_instances: 1
+          region: "asia-northeast1"
+          ingress_settings: "ALLOW_ALL" # TODO: change this to "ALLOW_INTERNAL_ONLY" if you want to allow only internal access
+          description: "" # TODO: change this to your function description
