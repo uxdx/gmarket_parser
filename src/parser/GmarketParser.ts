@@ -1,9 +1,6 @@
-import {
-  PrdAttrBuilder,
-  PrdInfo,
-  PrdInfoBuilder,
-  PrdOptionBuilder,
-} from "sazoshop";
+import PrdInfoBuilder from "../types/PrdInfoBuilder";
+import PrdOptionBuilder from "../types/PrdOptionBuilder";
+import PrdAttrBuilder from "../types/PrdAttrBuilder";
 import * as cheerio from "cheerio";
 import { scrape } from "./Scraper";
 
