@@ -1,6 +1,6 @@
 import * as ff from "@google-cloud/functions-framework";
 import { GmarketParser } from "./parser/GmarketParser";
-import PrdInfoBuilder from "./types/PrdInfoBuilder";
+import { PrdInfoBuilder } from "sazoshop";
 
 ff.http("gmarket_parser", async (req: ff.Request, res: ff.Response) => {
   //
