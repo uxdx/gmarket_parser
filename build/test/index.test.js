@@ -10,19 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mocha_1 = require("mocha");
-const GmarketParser_1 = require("../src/parser/GmarketParser");
+const sazoshop_1 = require("sazoshop");
 const expect = require("chai").expect;
-// describe("Sample Unit Test Title", () => {
-//   test("Example of test case", () => {
-//     it("should return 2", () => {
-//       expect(1 + 1).to.equal(2);
-//     });
-//   });
-// });
 (0, mocha_1.describe)("Parser Test", () => {
     (0, mocha_1.test)("Comple test", () => __awaiter(void 0, void 0, void 0, function* () {
         const sample_url = "http://item.gmarket.co.kr/Item?goodscode=2808997839&ver=20230829";
-        const builder = yield new GmarketParser_1.GmarketParser().parse(sample_url);
+        const builder = new sazoshop_1.PrdInfoBuilder().title("test");
         const prdInfo = builder.build();
         console.log(prdInfo);
     }));
