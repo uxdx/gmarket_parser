@@ -2,6 +2,9 @@ on:
   push:
     branches:
       - test
+  pull_request:
+    branches:
+      - release
 name: continuous
 jobs:
   test:
