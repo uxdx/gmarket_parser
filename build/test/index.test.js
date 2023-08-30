@@ -13,12 +13,11 @@ const mocha_1 = require("mocha");
 const GmarketParser_1 = require("../src/parser/GmarketParser");
 const expect = require("chai").expect;
 (0, mocha_1.describe)("Parser Test", () => {
-    (0, mocha_1.test)("Comple test", () => __awaiter(void 0, void 0, void 0, function* () {
-        (0, mocha_1.it)("should return PrdInfoBuilder", () => __awaiter(void 0, void 0, void 0, function* () {
-            const sample_url = "http://item.gmarket.co.kr/Item?goodscode=2808997839&ver=20230829";
-            const builder = yield new GmarketParser_1.GmarketParser().parse(sample_url);
-            const prdInfo = builder.build();
-        })).timeout(10000);
-        // console.log(prdInfo);
-    }));
+    (0, mocha_1.it)("should return PrdInfoBuilder", () => __awaiter(void 0, void 0, void 0, function* () {
+        const sample_url = "http://item.gmarket.co.kr/Item?goodscode=2808997839&ver=20230829";
+        const builder = yield new GmarketParser_1.GmarketParser().parse(sample_url);
+        const prdInfo = builder.build();
+        expect(prdInfo.title).to.equal("15% 13520원 1+1+1 UV 자외선차단 원터치 고급 3단 접이식 장우산 암막 양산 +부치다패드 60매");
+    })).timeout(1000);
+    // console.log(prdInfo);
 });
