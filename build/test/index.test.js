@@ -18,6 +18,6 @@ const expect = require("chai").expect;
         const builder = yield new GmarketParser_1.GmarketParser().parse(sample_url);
         const prdInfo = builder.build();
         expect(prdInfo.title).to.equal("15% 13520원 1+1+1 UV 자외선차단 원터치 고급 3단 접이식 장우산 암막 양산 +부치다패드 60매");
-    })).timeout(1000);
+    })).timeout(10000);
     // console.log(prdInfo);
 });
